@@ -52,6 +52,7 @@ class LoginViewModel (private val listener: LoginResultCallBacks) : ViewModel() 
 
     // 로그인 클릭
     fun onLoginClicked(v: View) {
+
         var loginCode : Int = user.isDataValid()
 
         if (loginCode == 0)
