@@ -52,9 +52,15 @@ class LoginViewModel (private val listener: LoginResultCallBacks) : ViewModel() 
 
     // 로그인 클릭
     fun onLoginClicked(v: View) {
-        if (user.isDataValid)
-            listener.onSuccess("Login Success")
+        var loginCode : Int = user.isDataValid()
+
+        if (loginCode == 0)
+            listener.onError("이메일을 입력하세요.")
+        else if (loginCode == 1)
+            listener.onError("올바른 이메일이 아닙니다.")
+        else if (loginCode == 2)
+            listener.onError("패스워드는 6글자 이상이어야 합니다.")
         else
-            listener.onError("Login error")
+            listener.onSuccess("로그인 성공")
     }
 }
